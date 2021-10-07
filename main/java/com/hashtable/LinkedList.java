@@ -3,84 +3,63 @@ package com.hashtable;
 import com.hashtable.INode;
 
 public class LinkedList<K> {
-	public  INode<K> head;
-	public  INode<K> tail;
+	public INode<K> head;
+	public INode<K> tail;
 
 	public LinkedList() {
 		this.head = head;
 		this.tail = tail;
 	}
 
-	/**
-	 * @param
-	 */
-	public void add(INode<K> newNode) {
+	public void add(INode<K> myNode) {
 		if (this.tail == null) {
-			this.tail = newNode;
+			this.tail = myNode;
 		}
-
 		if (this.head == null) {
-			this.head = newNode;
+			this.head = myNode;
 		} else {
 			INode tempNode = this.head;
-			this.head = newNode;
+			this.head = myNode;
 			this.head.setNext(tempNode);
 		}
 	}
 
-	public void printNodes() {
-		StringBuffer myNodes = new StringBuffer("My Nodes: ");
+	public void printMyNodes() {
+		StringBuffer myNodes = new StringBuffer("MyNodes");
 		INode tempNode = head;
 		while (tempNode.getNext() != null) {
 			myNodes.append(tempNode.getKey());
-			if (!tempNode.equals(tail))
+			if (!(tempNode.equals(tail))) {
 				myNodes.append("->");
+			}
 			tempNode = tempNode.getNext();
 		}
 		myNodes.append(tempNode.getKey());
 		System.out.println(myNodes);
-
 	}
 
-	public void printMyNodes() {
-		System.out.println("MyNode: " + head);
-	}
-
-	public void append(INode<K> MyNode) {
+	public void append(INode<K> myNode) {
 		if (this.head == null) {
-			this.head = MyNode;
+			this.head = myNode;
 		}
 		if (this.tail == null) {
-			this.tail = MyNode;
-		} else {
-			this.tail.setNext(MyNode);
-			this.tail = MyNode;
-		}
+			this.tail = myNode;
 
+		} else {
+			this.tail.setNext(myNode);
+			this.tail = myNode;
+		}
 	}
 
-	public void insert(INode MyNode, INode newNode) {
-
-		INode tempNode = MyNode.getNext();
-		MyNode.setNext(newNode);
+	public void insert(INode myNode, INode newNode) {
+		INode tempNode = myNode.getNext();
+		myNode.setNext(tempNode);
 		newNode.setNext(tempNode);
-
 	}
 
 	public INode<K> pop() {
-		INode tempNode = this.head;
+		INode<K> tempNode = this.head;
 		this.head = head.getNext();
-		return tempNode;
-
-	}
-
-	public INode popLast() {
-		INode tempNode = head;
-		while (!tempNode.getNext().equals(tail)) {
-			tempNode = tempNode.getNext();
-		}
-		this.tail = tempNode;
-		tempNode = tempNode.getNext();
 		return tempNode;
 	}
 
@@ -95,4 +74,11 @@ public class LinkedList<K> {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "LinkedList [" + head + "," + tail +  "]";
+	}
+	
+	
+	
 }
